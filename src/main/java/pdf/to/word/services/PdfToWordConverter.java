@@ -9,6 +9,7 @@ import com.adobe.pdfservices.operation.pdfops.options.exportpdf.ExportPDFTargetF
 
 import java.io.IOException;
 import java.nio.file.*;
+import pdf.to.word.utils.ConfigLoader;
 
 public class PdfToWordConverter {
     /**
@@ -16,11 +17,10 @@ public class PdfToWordConverter {
      * @return ExecutionContext Adobe service execution context
      * @throws IOException
      */
-    static ExecutionContext setUpContext() throws IOException {
+     static ExecutionContext setUpContext() throws IOException {
         return ExecutionContext.create(Credentials.serviceAccountCredentialsBuilder()
-                .fromFile("pdfservices-api-credentials.json").build());
-    };//TODO: Use a config file to store credential path
-    //TODO: move this function elsewhere and call it only once
+                .fromFile(ConfigLoader.loadConfig("adobeServiceCredentialPath")).build());
+    };//TODO: move this function elsewhere and call it only once
 
     /**
      * Convert PDF to Word document.

@@ -10,10 +10,10 @@ public class DocumentDecoderTest {
 
     @Test
     void testEncodeDocument() throws IOException {
-        String url = System.getProperty("user.dir")+ "/src/test/java/pdf/to/word/resources/example.docx";
+        String path = System.getProperty("user.dir")+ "/src/test/java/pdf/to/word/resources/example.docx";
 
         DocumentEncoder encoder = new DocumentEncoder();
-        String encodedDocument = encoder.encodeDocument(url);
+        String encodedDocument = encoder.encodeDocument(path);
         assertEquals(encodedDocument.substring(encodedDocument.length()-2), "==");
     }
 

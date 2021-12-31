@@ -25,9 +25,4 @@ public class RootControllerTest {
         assertEquals("pong", result.getResponse().getContentAsString());
     }
 
-
-
-
-
-
 }

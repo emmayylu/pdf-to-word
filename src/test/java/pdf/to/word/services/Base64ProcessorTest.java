@@ -21,5 +21,5 @@ public class Base64ProcessorTest {
         String decodedPdfPath = Base64Processor.decodePdf(encodedPdf);
         File file = new File(decodedPdfPath);
         assertTrue(file.exists());
-    };
+    }
 }

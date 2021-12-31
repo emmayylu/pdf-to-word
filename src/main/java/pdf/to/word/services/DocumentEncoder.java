@@ -10,7 +10,6 @@ public class DocumentEncoder {
 
     public String encodeDocument(String path) throws IOException {
         File file = new File(path);
-        String encodedFile = Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file));
-        return encodedFile;
+        return Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file));
     }
 }

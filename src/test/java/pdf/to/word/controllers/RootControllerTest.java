@@ -19,7 +19,7 @@ public class RootControllerTest {
     private MockMvc mvc;
 
     @Test
-    void testGetWord() throws Exception{
+    void testRoot() throws Exception{
         RequestBuilder request = get("/ping");
         MvcResult result = mvc.perform(request).andReturn();
         assertEquals("pong", result.getResponse().getContentAsString());

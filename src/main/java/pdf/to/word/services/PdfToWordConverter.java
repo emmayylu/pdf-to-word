@@ -9,23 +9,19 @@ import com.adobe.pdfservices.operation.pdfops.options.exportpdf.ExportPDFTargetF
 
 import java.io.IOException;
 import java.nio.file.*;
+
 public class PdfToWordConverter {
-    String convertToWord(String path) {
-        try {
-            Credentials credentials = Credentials.serviceAccountCredentialsBuilder()
-                    .fromFile(System.getProperty("user.dir") + "/pdfservices-api-credentials.json").build();
-            ExecutionContext executionContext = ExecutionContext.create(credentials);
-            ExportPDFOperation exportPdfOperation = ExportPDFOperation.createNew(ExportPDFTargetFormat.DOCX);
-            FileRef sourceFileRef = FileRef.createFromLocalFile(path);
-            exportPdfOperation.setInput(sourceFileRef);
-            FileRef result = exportPdfOperation.execute(executionContext);
-            Path tempDirWithPrefix = Files.createTempDirectory("temp");
-            String outputPath = tempDirWithPrefix + "/output/convertedResult.docx";
-            result.saveAs(outputPath);
-            return outputPath;
-        } catch (IOException | ServiceApiException e) {
-            e.printStackTrace();
-        }
-        return path;
+
+    ExecutionContext setUpContext() throws IOException {
+        return ExecutionContext.create(Credentials.serviceAccountCredentialsBuilder()
+                .fromFile("pdfservices-api-credentials.json").build());
+    };//TODO: Use a config file to store credential path
+
+    String convertToWord(String path) throws IOException, ServiceApiException {
+        ExportPDFOperation exportPdfOperation = ExportPDFOperation.createNew(ExportPDFTargetFormat.DOCX);
+        exportPdfOperation.setInput(FileRef.createFromLocalFile(path));
+        String outputPath = Files.createTempDirectory("temp") + "/output/convertedResult.docx";
+        exportPdfOperation.execute(setUpContext()).saveAs(outputPath);
+        return outputPath;
     }
 };

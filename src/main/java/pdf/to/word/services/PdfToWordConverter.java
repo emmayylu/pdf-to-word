@@ -12,12 +12,13 @@ import java.nio.file.*;
 
 public class PdfToWordConverter {
 
-    ExecutionContext setUpContext() throws IOException {
+    static ExecutionContext setUpContext() throws IOException {
         return ExecutionContext.create(Credentials.serviceAccountCredentialsBuilder()
                 .fromFile("pdfservices-api-credentials.json").build());
     };//TODO: Use a config file to store credential path
+    //TODO: move this function elsewhere and call it only once
 
-    String convertToWord(String path) throws IOException, ServiceApiException {
+    static String convertToWord(String path) throws IOException, ServiceApiException {
         ExportPDFOperation exportPdfOperation = ExportPDFOperation.createNew(ExportPDFTargetFormat.DOCX);
         exportPdfOperation.setInput(FileRef.createFromLocalFile(path));
         String outputPath = Files.createTempDirectory("temp") + "/output/convertedResult.docx";

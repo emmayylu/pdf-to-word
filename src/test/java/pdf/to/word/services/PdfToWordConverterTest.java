@@ -12,8 +12,7 @@ public class PdfToWordConverterTest {
 
     @Test
     void testConvertPdfToWord() throws ServiceApiException, IOException {
-        PdfToWordConverter converter = new PdfToWordConverter();
-        String outputPath = converter.convertToWord("src/test/java/pdf/to/word/resources/example.pdf");
+        String outputPath = PdfToWordConverter.convertToWord("src/test/java/pdf/to/word/resources/example.pdf");
         File file = new File(outputPath);
         assertTrue(file.exists());
     }

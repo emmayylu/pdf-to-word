@@ -16,8 +16,7 @@ public class Base64Processor {
      * @throws IOException
      */
     static String encodeDocument(String path) throws IOException {
-        File file = new File(path);
-        return Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file));
+        return Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(new File(path)));
     }
 
     /**

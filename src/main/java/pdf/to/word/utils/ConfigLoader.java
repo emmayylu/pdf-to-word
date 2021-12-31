@@ -10,7 +10,6 @@ public class ConfigLoader {
      * Load a configuration value.
      * @param name Configuration name
      * @return String Configuration value
-     * @throws IOException
      */
     public static String loadConfig(String name) throws IOException {
         InputStream input = new FileInputStream("config.properties");

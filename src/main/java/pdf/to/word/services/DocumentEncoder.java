@@ -8,9 +8,8 @@ import java.util.Base64;
 
 public class DocumentEncoder {
 
-    public String encodeDocument(String url) throws IOException {
-        File file = new File(url);
-        String encodedFile = Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file));
-        return encodedFile;
+    static String encodeDocument(String path) throws IOException {
+        File file = new File(path);
+        return Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(file));
     }
 }

@@ -26,7 +26,7 @@ public class PdfToWordConverter {
      * @param path Location in which the PDF file is stored
      * @return String Location in which the ouput Word file is stored
      */
-    static String convertToWord(String path) throws IOException, ServiceApiException {
+    public static String convertToWord(String path) throws IOException, ServiceApiException {
         ExportPDFOperation exportPdfOperation = ExportPDFOperation.createNew(ExportPDFTargetFormat.DOCX);
         exportPdfOperation.setInput(FileRef.createFromLocalFile(path));
         String outputPath = Files.createTempDirectory("temp") + "/output/convertedResult.docx";

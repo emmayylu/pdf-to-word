@@ -13,7 +13,7 @@ public class Base64Processor {
      * @param path Location in which the document to convert is stored
      * @return String Base64 encoded result
      */
-    static String encodeDocument(String path) throws IOException {
+    public static String encodeDocument(String path) throws IOException {
         return Base64.getEncoder().encodeToString(FileUtils.readFileToByteArray(new File(path)));
     }
 
@@ -22,7 +22,7 @@ public class Base64Processor {
      * @param encodedPdf Base64 encoded PDF
      * @return String Location in which the decoded PDF is stored
      */
-    static String decodePdf(String encodedPdf) throws IOException {
+    public static String decodePdf(String encodedPdf) throws IOException {
         String decodedPdfPath = Files.createTempDirectory("temp") + "/decodedPdf.pdf";
         FileUtils.writeByteArrayToFile(new File(decodedPdfPath), Base64.getDecoder().decode(encodedPdf));
         return decodedPdfPath;
